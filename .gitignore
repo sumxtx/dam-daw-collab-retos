@@ -13,3 +13,6 @@ pubspec.lock
 .venv
 *.class
 *.gradle 
+*.out
+*.env
+*.bak
