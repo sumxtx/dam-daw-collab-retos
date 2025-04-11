@@ -36,7 +36,7 @@
  que son mas seguros como std::string, std::vector, etc...
 */
 
-#include <bitset>
+
 #include <iostream>
 /*
   C++ usa #include para importar.
@@ -59,6 +59,12 @@
   MAX y MIN son diferentes de un int son diferentes
   entonces el lenguaje ya nos trae esa facilidad
 */
+
+// Estos seran mas para demonstraciones
+// A programas cortos utilizaremos mas <iostream>, <string>
+#include <bitset>
+#include <cfloat>
+#include <stdlib.h>
 
 int main(void)
 {
@@ -182,5 +188,171 @@ int main(void)
     std::cout << " -> Aqui ya te la lia " << std::endl;
   }
 
+  /****************************************************************************/
+  /* booleans - Representa 1 byte se suele usar para true false               */
+  /****************************************************************************/
+
+  bool isTrue = true;     // representado internamente como 1
+  bool isFalse = false;   // representado internamente como 0
+
+  if(isTrue)
+  {
+    std::cout << "true: " << isTrue << std::endl;
+  }
+  if(!(isFalse)) // not is false , aqui mas que nada para que 
+                 // la condicion se cumpla porque si no 0
+                 // computara como que no existe, si ponemos if(isFalse) 
+                 // se entendera internamente como que false no existe
+  {
+    std::cout << "false: " << isFalse << std::endl;
+  }
+  if(isFalse)
+  {
+    std::cout << "Eso no se imprimira" << std::endl;
+  }
+  
+  //sizeof
+  // Ya que booleans es bastante straight-forward pongo aqui sizeof para que vean
+  // como checkear el size de un numero en memoria
+
+  std::cout << "sizeof bool: " << sizeof(bool) << std::endl;
+  std::cout << "sizeof true: " << sizeof(true) << std::endl;
+  std::cout << "sizeof false: " << sizeof(false) << std::endl;
+  // como vemos aunque bool sea false sigue ocupando espacion en memoria
+  
+  // Ademas sirve para los otros tipos de datos
+  std::cout << "sizeof int: " << sizeof(int) << std::endl;
+
+  /****************************************************************************/
+  /* float - Representa 4 bytes se usa para decimales de corta precision      */
+  /****************************************************************************/
+
+  float fl = 36.5;
+  float fln = -36.5;
+  float fld = 0.05;
+  float fldn = -0.05;
+  //Bueno con "corta"
+
+  std::cout << "Maximun Positive float: " << FLT_MAX << std::endl;
+  std::cout << "Minimun Positive float: " << FLT_MIN << std::endl;
+  std::cout << "sizeof float: " << sizeof(float) * 8 << "bits" << std::endl;
+
+
+  /* No os preocupeis por este cacho, es simplemente para poder "enganar"
+    el constructor de bitset para poder imprimir el numero en binario por pantalla 
+    si no no da el valor que toca, y lo mas interesante de los floats 
+    ocurre a como es representado en binario */
+  std::cout << "Positive Float in binary:  " << std::bitset<sizeof(float)*CHAR_BIT>(*reinterpret_cast<unsigned long*>(&fl)) <<std::endl;
+  // Positive Float in binary:  01000010000100100000000000000000
+  std::cout << "Negative Float in binary:  " << std::bitset<sizeof(float)*CHAR_BIT>(*reinterpret_cast<unsigned long*>(&fln)) <<std::endl;
+  // Negative Float in binary:  11000010000100100000000000000000
+  std::cout << "Positive Decimal Float in binary:  " << std::bitset<sizeof(float)*CHAR_BIT>(*reinterpret_cast<unsigned long*>(&fld)) <<std::endl;
+  // Positive Decimal Float in binary:  00111101010011001100110011001101
+  std::cout << "Negative Decimal Float in binary:  " << std::bitset<sizeof(float)*CHAR_BIT>(*reinterpret_cast<unsigned long*>(&fldn)) <<std::endl;
+  // Negative Decimal Float in binary:  10111101010011001100110011001101
+
+/* Veamos esta maravilla de la Arquitectura de Ordenadores en Binario:
+
+   Negative Float en binario:   1 10000100 00100100000000000000000  = -36.5
+                                ^ ^------^ ^---------------------^
+                                S    E         M
+            en bits             1    8         23       = 32 bits
+
+   S - Signo      - 0 Positivo 1 Negativo
+                  - Entonces aqui tenemos (-1) x ....
+   
+   E - Exponente  - Aqui es al reves el  primero digito es 1 Positivo 0 Negativos
+                  
+                  Porque tenemos que restarle 127, eso se llamara bias 
+                  - 11111111 -> El Maximo posible es 255, 255 -127 = 128 
+                  - 01111111 -> El Maximo sera 127, 127 - 127 = 0
+                  
+                  Entrando en terreno de los exponentes negativos
+                  - 01111110 -> sera 126, 126 - 127 = -1
+
+                  por ejemplo 10000100 = 132 si lo sustraimos 127 = 5
+                  es bastante confusillo, solo asume que lo que te digo es vrdd
+                  no vamos a crear una CPU asi que solo entiende esto 
+                  numero de binario a decimal - 127 = exponente 
+
+                  Entonces tenemos (-1) x 2e5 ..........
+
+   M - Mantissa   - La mantisa tiene un 1. implicito
+                    y va de izquierda a derecha en negativo
+                    y se veria asi el calculo:
+
+                    2e0    2e-1  2e-2  2e-3    2e-4  2e-5  2e-6
+                    1 *  . 0 *   0 *   1 *     0 *   0 *   1 *
+                    ----------------------------------------------------------
+                    1 +    0 +   0 +   0.125 + 0 +   0 +   0.015625 = 1.140625
+
+  por lo tanto tenemos:
+                    (-1) x 2e5 x 1.140625 = -36.5
+
+
+  Floats y Doubles son toda una movida por si proprios a nivel binario
+   
+   Si quieres verlo en detalle te recomiendo estos videos:
+   https://www.youtube.com/watch?v=yvdtwKF87Ts
+   https://www.youtube.com/watch?v=PZRI1IfStY0
+   https://www.youtube.com/watch?v=bbkcEiUjehk
+
+*/
+
+  /****************************************************************************/
+  /* double - Representa 8 bytes se usa para decimales de larga precision     */
+  /****************************************************************************/
+  
+  double pi;
+
+  std::cout << "Maximun Positive double: " << DBL_MAX << std::endl;
+  std::cout << "Maximun Positive double: " << DBL_MIN << std::endl;
+
+  // Maximun Positive double: 1.79769e+308
+  // Maximun Positive double: 2.22507e-308
+  // Maximun Negative double: -1.79769e+308
+  // Mininum Negative double: -2.22507e-308
+
+  // La conversion se hara igual que de binario a float
+  // Salvo que el exponente tiene  11 bits
+  // y la Mantissa 52 bits
+
+  /****************************************************************************/
+  /* void - Representa la ausencia de valor se usa para pointer variables     */
+  /****************************************************************************/
+
+  // Aparte se usa tambien para funciones que no retornan nada
+
+
+  /****************************************************************************/
+  /* Typecasting - Convertir de un tipo a otro                                */
+  /****************************************************************************/
+
+  // Os acordais de aquel 10 que nos sacaba un salto de linea,
+  // que tal si ahora se sacamos como 10, pero eso conllevara pasarlo a int
+
+  std::cout << (int)edadEn5yr << std::endl; 
+
+
+  // Bonus: Entrando en terreno fandagoso mallocs vamos a ver un casting con void
+  // malloc se usa para alojar memoria dinamicamente y es uno de los causantes del 70%
+  // de los leaks de memoria
+  // malloc nos va a retornar un puntero al inicio de la direccion de memoria asignada
+  // por lo tanto un void porque no es un valor realmente si no una direccion
+  // void *malloc(size); luego lo para usarlo lo castearemos al tipo que queramos
+ 
+  int *ptr = (int *) malloc(sizeof(int) * 10);
+  // Ahora tenemos un bloque contiguo de memoria, o un array, que cabe 10 ints
+  // Lo que se asigna manual se libera manual, por lo tanto hemos de llamar 
+  // un free para cada malloc que hagamos
+  free(ptr);
+  // Y asignarlo ademas a NULL o su equivalente en C++ nullptr asi no tenemos
+  // un pointer "suelto", que tambien es un bug
+  ptr = nullptr;
+
+  // pero lo dejaremos por aqui... Ya que C++ tiene mejores formas de asignar memoria
+  // eso de malloc viene del legado de C
+
+  
   return 0;
 }
