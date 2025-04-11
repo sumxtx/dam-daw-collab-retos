@@ -4,7 +4,6 @@ Este repositorio es una **adaptación del proyecto original de [MoureDev](https:
 
 ## 📚 Objetivo
 
-- Colaborar en ejercicios, propuestas y prácticas de programación como un equipo, sin riesgo de afectar el repositorio principal ni generar pull requests no deseados al proyecto original.
 - La idea es enfocar cada reto como un ejercicio práctico para aprender, familiarizarnos o explorar los lenguajes de programación y sus diferentes paradigmas.
 - En cada reto, se proporcionará un enunciado y una serie de requisitos a cumplir. La solución puede ser presentada en el lenguaje de programación que prefieras y se espera que cada uno aporte su propia solución al reto.
 - Como estamos aprendiendo o profundizando en cada lenguaje, es recomendable que tratemos de hacer los retos de la manera más completa posible, incluyendo comentarios.
