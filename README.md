@@ -110,6 +110,7 @@ Este proyecto se basa en el trabajo de [MoureDev](https://github.com/mouredev), 
 
 
 ## Guía rápida Git y GitHub
+### 🚀 Cómo empezar
 (Los comandos de Git son para el cmd, terminal del IDE o GitBash: ```git...```)
 1. Realiza un FORK de este repositorio desde GitHub.
 2. CLONA tu FORK a tu máquina local: `git clone [URL de tu Fork en GitHub]`.
@@ -122,3 +123,13 @@ Este proyecto se basa en el trabajo de [MoureDev](https://github.com/mouredev), 
 9. Le damos al botón que pone **CONTRIBUTE**.
 10. Después a **CREATE PULL REQUEST** (cubre la plantilla que te aparecerá) y envías la solicitud.
 11. Listo! Ahora solo queda esperar a que el equipo de colaboradores revise tu Pull Request y la acepte. Recuerda que si no se acepta en un plazo de 2 semanas, se cerrará automáticamente.
+
+### ❓ Ya he mandado mi Pull Request, ¿y ahora qué?
+1. Espera a que un colaborador revise tu Pull Request y haga Merge.
+2. Actualiza tu FORK en GitHub cada vez que haya un cambio (GitHub te avisa dentro de tu FORK) dándole al botón *Sync fork* y luego *Update branch*.
+3. Desde la terminal de tu IDE o GitBash, asegúrate que estás en la rama `main` de tu FORK: `git checkout main`.
+4. Actualiza tu rama `main` con el siguiente comando: `git pull`.
+5. Ahora podrás ver desde `main` los cambios que se han añadido al repositorio original.
+6. (Opcional) Si se ha hecho Merge de tu Pull Request, puedes eliminar la rama que creaste para el ejercicio: `git branch -d [nombre-de-tu-rama]`.
+
+**Recuerda que no hace falta que actualices tu `main` para hacer ejercicios, creando una rama por ejercicio puedes contribuir sin problemas.**
