@@ -19,13 +19,13 @@ Este proyecto se basa en el trabajo de [MoureDev](https://github.com/mouredev), 
 
 ---
 
-## Información importante
+## 🔥 Información importante
 
 * Puedes utilizar **cualquier lenguaje de programación**, y encontrar las correcciones de todos los compañeros en el directorio de cada reto.
 * **¿Quieres participar?** Echa un vistazo a las **[Instrucciones](https://github.com/Zugarramurdi/DAM-DAW-Collab-retos#instrucciones)** en este mismo documento.
 * Los retos siguen un orden basado en su ruta de estudio pero si ya tienes conocimientos puedes resolverlos de manera totalmente independiente. Simplemente revisa su nivel de dificultad.
 
-## Roadmap
+## 📍 Roadmap
 
 | # | Ejercicio |
 |---|-----------|
@@ -81,7 +81,7 @@ Este proyecto se basa en el trabajo de [MoureDev](https://github.com/mouredev), 
 |49|[EL ALMACÉN DE PAPÁ NOEL](./Roadmap/49%20-%20EL%20ALMACÉN%20DE%20PAPÁ%20NOEL/ejercicio.md)|
 |50|[PLANIFICADOR DE OBJETIVOS DE AÑO NUEVO](./Roadmap/50%20-%20PLANIFICADOR%20DE%20OBJETIVOS%20DE%20A%C3%91O%20NUEVO/ejercicio.md)|
 
-## Instrucciones
+## 📝 Instrucciones
 
 **Haz un FORK del proyecto y trabaja con Git para ir sincronizando las actualizaciones.**
 
