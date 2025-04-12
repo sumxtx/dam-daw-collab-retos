@@ -318,6 +318,16 @@ int main(void)
   // y la Mantissa 52 bits
 
   /****************************************************************************/
+  /* Modificador - const - Constantes, Valores inmutables                     */
+  /****************************************************************************/
+  
+  // Hace que un valor de la variable no se pueda modificar
+
+  //const double PI;          // Y si nos fijamos ya tambien distingue mayusculas
+  const double PI = 3.14;     // Y tiene que ir siempre inicializada si no no compila
+
+
+  /****************************************************************************/
   /* void - Representa la ausencia de valor se usa para pointer variables     */
   /****************************************************************************/
 
