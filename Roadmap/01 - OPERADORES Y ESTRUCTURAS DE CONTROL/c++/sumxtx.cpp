@@ -10,7 +10,8 @@ int main(void)
   /****************************************************************************/
 
   int a1;       // Not initialized, garbage value
-                // C++ no inicializa una variable automatica a 0, va tener basura
+                // C++ no inicializa de froma automatica una variable a 0,
+                // va a  tener "basura"
   std::cout << "I may contain garbage: " << a1 << std::endl;
 
   //auto a2;    // auto deja el compiler asignar el tipo de variable
@@ -27,23 +28,26 @@ int main(void)
                 // por compatibilidad mejor no hacerlo...
   std::cout << "I am initialized to : " << a4 << std::endl;
 
-
   int a5 = a4;  // Copy Initialization
   std::cout << "I am initialized to : " << a5 << std::endl;
 
-  std::string s1 = "Hello"; // Modern String Type en C++ 
-                            // tiene metodos, la longitud cacheada, y otras
-                            // funcionalidades embutidas
 
-                            //char d2[5] = "Hello";   // Esto seria un string, pero necesita el '\0' al final
-                            // Junto con malloc, en legacy C es de lo que mas 
-                            // da problemas y bugs ya que por ejemplo
-                            // deberia ser de 6 la longitud y si viene como resulto
-                            // de una funcion o lo que sea y no tiene el espacio
-                            // para el '\0' como ahora  se lia
-                            // ya paso a desuso por la opcion mas moderna y segura
+  std::string s1 = "Hello"; /* Modern String Type en C++ *//*
+                             tiene metodos, la longitud cacheada, y otras
+                             funcionalidades embutidas
+
+                            char d2[5] = "Hello";
+
+                             Esto seria un "string", pero necesita el '\0' al final
+                             Junto con malloc, en legacy C es de lo que mas 
+                             da problemas y bugs ya que por ejemplo
+                             deberia ser de 6 la longitud y si viene como resulto
+                             de una funcion o lo que sea y no tiene el espacio
+                             para el '\0' como ahora y se lia
+                             ya paso a desuso por la opcion mas moderna y segura */
   std::cout << "Correct String: " << s1 << std::endl;
   std::cout << "Correct String length: " << s1.size() << std::endl;
+
 
   // Array types 
   int array1[] = {2,4,5,6,7};                   // fixed size
@@ -56,137 +60,149 @@ int main(void)
   std::cout << vec[1] << std::endl;
   std::cout << vec.size() << std::endl;
 
-  // Hay mas, pero vamos a ir tirando con esto por ahora, hasta que se 
-  // vayan dando las oportunidades
-
   /****************************************************************************/
   /* Operadores Aritmeticos, Logicos y bucles                                 */
   /****************************************************************************/
 
-  /* For Loop Clasico */
+  /* For Loop Clasico *//*
 
-  // Para la condicion inicial que suele ser una asignacion, 
-  // hasta que no se cumpla la condicion intermedia que suele ser un logico
-  // ejecuta la operacion que suele ser un operador aritmetico
-  // y de reasignacion basado en la condicion intermedia
+   Para la condicion inicial que suele ser una asignacion, 
+   hasta que no se cumpla la condicion intermedia que suele ser un logico
+   ejecuta la operacion que suele ser un operador aritmetico
+   y de reasignacion basado en la condicion intermedia */
 
-  // for(condicion inicial; condicion intermedia; operacion)
 
-  for(int i = 0; i < 10; i++) 
-    // para i inicial en 0, hasta que i no sea menor que 10, incrementa i, i = i + 1
-    // ira de 0 a 9, ya que no estamos diciendo <= menor o igual a 10
+  for(int i = 0; i < 10; i++) // para i inicial en 0, mientras i sea menor que 10, 
+  {                           // incrementa i, 
+    std::cout << i << " ";    // imprime i por pantalla con un espacio 
+  }                           // vuelve al inicio del for, i vuelve a comprobar i < 10
+  std::cout << std::endl;     // cuando i sea 9 (i < 10 pero no es igual a 10) sale 
+                              // y nos imprime un salto de linea
+  
+
+
+  /* While Loop *//*
+
+   Mientras se cumpla la condicion, haz algo
+   Es parecido al for loop, pero mas flexible, ya que la condicion inicial 
+   se inicializa fuera y la operacion esta mas libre dentro del bucle */
+
+  int it = 0;                 // declaracion inicial
+  while(it <= 10)             // condicion a comprobar
   {
-    std::cout << i << " ";
-  }
+    it++;                     // condicion final, puede ir en cualquier parte
+    std::cout << it << " ";   // dependiendo donde vaya hara una cosa o otra
+                              // como aqui incrementa antes de imprimir
+  }                           // vuelve al inicio del loop
   std::cout << std::endl;
+  // Output > 1 2 3 4 5 6 7 8 9 10 11
 
-  /* While Loop */ 
+ 
 
-  // Mientras se cumpla la condicion, haz algo
-  // Es parecido al for loop, pero mas flexible,
-  // ya que la condicion inicial se inicializa  fuera
-  // y la operacion esta mas libre dentro del bucle
+  /* Do-While *//*
 
-  int it = 0;
-  while(it <= 10)       // comparacion menor o igual
-  {
-    it++;               // incrementamos it, it = it + 1
-    std::cout << it << " ";
-  }
-  std::cout << std::endl;
-  // Output > 1 2 3 4 5 6 7 8 9 10 11 
-
-  /* Do-While */ 
-
-  // Es como el while pero el while ya de entrada comprueba la condicion
-  // el do-while realiza una primera iteracion en el bucle luego comprueba
+   Es como el while pero el while ya de entrada comprueba la condicion
+   el do-while realiza una primera iteracion en el bucle luego comprueba */
 
   do
   {
-    std::cout << it << " ";
-    it--;               // decrementamos it, it = it -1
-  } while(it >= 0);     // comparacion mayor o igual
-  std::cout << std::endl;
+    std::cout << it << " ";   // Haz algo 
+    it--;                     // realiza la operacion sobre el valor de control
+  } while(it >= 0);           // Haz la comprobacion, 
+  std::cout << std::endl;     // si se cumple vuelve sale del bucle
 
-  /* For range based */
 
-  // Es como el for clasico pero mas moderno y suele usarse para operar 
-  // en los datos colecciones como vector,string, etc..
-  // aparte que no necesita un indice, ni una operacion
-  // se usa cuando quieres iterar en todos miembros del objecto
-  // pero hacerlo igual de flexible que el for clasico es mas complicado
+
+  /* For range based *//*
+
+   Es como el for clasico pero mas moderno y suele usarse para operar 
+   en los datos colecciones como vector,string, etc..
+   aparte que no necesita un indice, ni una operacion
+   se usa cuando quieres iterar en todos miembros del objecto
+   pero hacerlo igual de flexible que el for clasico es mas complicado */
 
   int array2[] = {2,4,5,6,7}; 
   auto res = 0;
-  for(auto i : array2 ) // Aqui vemos un uso de auto, int valdria tambien
-  {
-    res += i;   // Suma y Asignacion += , res = res + i;
-                // para cada iteracion vamos a sumarle a res
-                //el valor del numero y asignar el resultado otra ves a res
-    std::cout  << res << " ";
-  }
+  for(auto i : array2 )       // Aqui vemos un uso de auto, int tambien es valido
+  {                           // Para cada elemento de array2 me lo asigna a i 
+    res += i;                 // Hazle esta operacion
+    std::cout  << res << " "; // Haz otra operacion cualquiera
+  }                           // Si ya no tengo mas elementos sale del bucle
   std::cout << std::endl;
   std::cout << std::endl;
 
-  // Aqui vemos una combinacion de los dos tipos mencionados, un vector de strings
+
   std::vector<std::string> vs = {"Hello", "Cpp", "is", "fun"};
-  for(std::string s : vs) // no usamos auto, usamos std::string,
-                          // por demostrar la posibilidad...auto tambien valdria
-    {
-      std::cout << s;
-    }
+  // Aqui vemos una combinacion de los dos tipos mencionados, un vector de strings
+
+
+  for(std::string s : vs)     // Usamos un std::string, para holdear cada elemento
+  {                           // auto tambien vale, 
+    std::cout << s;           // Haz algo
+  }                           // Si hay mas elementos en vs vuelve al inicio, si no sale
   std::cout << std::endl;
 
-  // aprovecho y introduzco un poco mas sobre memoria
-  std::cout << sizeof(std::string) << std::endl;
-  // >>  32
 
-  for(int i = 0; i < vs.size(); i++)
+
+  // Antentos a esto...
+  std::cout << sizeof(std::string) << std::endl;
+  //Output >>  32, un std::string idependiente de la longitud del string tiene 32 bytes
+
+  //por que lo que en verdad esta guardando mas metadata que el proprio string, si el string
+  //es corto lo guardara en el proprio string, pero si es largo va alojhar memoria y 
+  //unos 8 bytes para el puntero con la direccion de donde esta el string alojado 
+  //unos 4 o 8 bytes para el tamano del string y tenerlo cacheado
+  //unos 4 o 8 bytes para la capacidad total de memoria del string
+  //4 o 16 bytes para adicional metadata, 
+
+
+  for(int i = 0; i < vs.size(); i++) // iteramos sobre la longitud del vector de strings
   {
     std::cout << &vs[i] <<std::endl; // & - en este contexto nos va printar la
-                                     // direccion de memoria de vs[i]
+                                     // direccion de memoria de vs[i],
+                                     // lo que antes vimos como referencia significa
+                                     // address (direccion), entonces un paso por referencia
+                                     // es pasar la direccion en memoria
   }
   std::cout << std::endl;
-  //  Aqui si nos fijamos cada print es una direccion diferente
+  //  Con cada print nos muestra una direccion diferente
   //  basada en el size de std::string
   //  0x6457b054c6e0      e0 inicio
   //  0x6457b054c700      +32
   //  0x6457b054c720      +32
   //  0x6457b054c740      +32
-  //  y aunque sea mas largo o mas corto el string lo que realmente esta guardando
-  //  es un puntero a la memoria del string, por eso 32,
 
-  for(const auto &st : vs)  // introducimos la posibilidad del const auto tambien
-                            // mejor praxis, pues hara la variable inmutable
-                            // y la protege mejor
+
+  for(const auto &st : vs)  // Ahora vemos que estamos haciendo el for con const &
+                            // Eso significa que antes, sin eso, estamos haciendo copy
+                            // del elemento a uno nuevo, pero ahora estamos accediendo
+                            // al elemento directamente, por eso const para evitarse modificarlo
   {
     std::cout << "Address of s: " << st << " : " << &st <<  std::endl;
   }
   std::cout << std::endl;
   //  Aqui nos da la misma direccion que la anterior
-  //  porque si nos fijamos en el auto lleva un &st (address of st)
   //  Address of s: Hello : 0x654ed5fba6e0
   //  Address of s: Cpp :   0x654ed5fba700
   //  Address of s: is :    0x654ed5fba720
   //  Address of s: fun :   0x654ed5fba740
 
-  for(auto st : vs)
+
+  for(const auto st : vs) // ejemplo sin &
   {
     std::cout << "Address of s: " << st << " : " << &st <<  std::endl;
   }
   std::cout << std::endl;
-  //  Aqui ya  cambia, es la misma direccion, porque ya no estamos referenciando 
-  //  con & las direcciones de cada miembro, si no que estamos haciendo una copia
-  //  y siempre se guarda en la misma direccion st
 
   //  Address of s: Hello : 0x7ffca618c5b0
-  //  Address of s: Cpp : 0x7ffca618c5b0
-  //  Address of s: is : 0x7ffca618c5b0
-  //  Address of s: fun : 0x7ffca618c5b0
+  //  Address of s: Cpp :   0x7ffca618c5b0
+  //  Address of s: is :    0x7ffca618c5b0
+  //  Address of s: fun :   0x7ffca618c5b0
 
   // Eso se puede tener en cuenta segun lo que queramos hacer, o no hacer, como
-  // en ese caso no gasta muchos recursos, pero no tendriamos acceso
-  // para modificar el valor original ya que es una copia
+  // en ese caso no gastaria  muchos recursos si un string es largo
+  // copiarlo varias veces, pero si quisiemos en la iteracion modificar el original
+  // no tendriamos acceso para modificar el valor original ya que es una copia
 
 
   /* Switch case */     
